@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<button class="get-tweets">getTweets</button>
+
+<table id="personDataTable">
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    
+</table>
+        
+
+<script>
+$('.get-tweets').click(function() {
+
+	$.ajax({
+		url: '/tweets/sarahhamm_',
+		type: "GET",
+		success: function(data, textStatus, jqXHR) {
+		    // since we are using jQuery, you don't need to parse response	
+			var newData = JSON.parse(data);
+		    drawTable(newData);
+		}
+	});
+});
+function drawTable(data) {
+    for (var i = 0; i < data.length; i++) {
+        drawRow(data[i]);
+    }
+}
+
+function drawRow(rowData) {
+    var row = $("<tr />")
+    $("#personDataTable").append(row); 
+    row.append($("<td>" + rowData.id + "</td>"));
+    row.append($("<td>" + rowData.text + "</td>"));
+    row.append($("<td>" + rowData.created_at + "</td>"));
+}
+
+
+</script>
+
+</body>
+</html>
+
