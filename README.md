@@ -18,9 +18,10 @@ Run the application
 
 git clone https://github.com/selvavalluvan/projectTilt.git
 
-2) Inside the folder created, install dependencies using CPAN.
+2) Inside the folder created, install dependencies using CPAN or apt-get.
 
-cpan install
+chmod +x ./installdep.sh
+./installdep.sh
 
 Most of them are Dancer dependencies.
 
