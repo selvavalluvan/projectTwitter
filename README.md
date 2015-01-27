@@ -39,6 +39,25 @@ Deployed Version of the App
 
 It is available in  https://evening-eyrie-8562.herokuapp.com/
 
+To Deploy this app in any of your Heroku App
+=============================================
+1) Navigate to the application folder
+
+ In command line : 
+2) heroko login
+
+3) git init
+
+4) git add .
+
+5) git commit -a -m "My app on Heroku"
+
+6) heroku create --stack cedar --buildpack https://github.com/miyagawa/heroku-buildpack-perl.git
+
+7) git push heroku master
+
+It will start deploying the app and dependencies and will give you a appid like a URL at the end and that is the public URL.
+
 
 Note
 ======
