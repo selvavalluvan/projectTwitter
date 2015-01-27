@@ -1,3 +1,18 @@
+########################################################################
+#
+# File   :  TwitterFry.pm
+# History:  23-Jan-2015 first implementation of the TwitterFry package
+#               26-Jan-2015 final implementation of the TwitterFry
+#                       module, including testing.
+# Author: Selva Valluvan <pvalluva@uwaterloo.ca>
+#
+########################################################################
+#
+# This module has one object and has its own methods.
+# Comments are provided at plces needed.
+#
+########################################################################
+
 package TwitterFry;
 
 use LWP::UserAgent;
@@ -59,7 +74,7 @@ sub getTweets {
       my ( $self ) = @_;
       my $token = $self->{_token};
       my $screenName = @{$self->{_screenName}}[0];
-      my $count = (defined $self->{_count}) ? $self->{_count} : 20;
+      my $count = (defined $self->{_count}) ? $self->{_count} : 20;                 # providing a default count if the calling function doesnot provide one.
       my $ua = LWP::UserAgent->new;
 
       $self->validate();
@@ -99,7 +114,7 @@ sub getCommonFollowings {
       my ( $self ) = @_;
       my $token = $self->{_token};
       my $screenName = $self->{_screenName};
-      my $count = (defined $self->{_count}) ? $self->{_count} : 200;
+      my $count = (defined $self->{_count}) ? $self->{_count} : 200;   # providing a default count if the calling function doesnot provide one.
 
       $self->validate();
       if(not defined $self->{_error}){

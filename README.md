@@ -43,7 +43,6 @@ It is available in  https://evening-eyrie-8562.herokuapp.com/
 Note
 ======
 
-I wanted to finish the challenge within 4 - 5 days and I managed to finish in 4.
 I am not too good at HTML and CSS stuffs. But I tried.  Pardon me for bad frontend. Please comment on the code and the application. Let me know if any details are needed.
 
 Thanks.

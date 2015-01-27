@@ -1,3 +1,18 @@
+########################################################################
+#
+# File   :  Twitter.pm
+# History:  23-Jan-2015 first implementation of the Twitter package
+#               26-Jan-2015 final implementation of the Twitter
+#                       module, including testing.
+# Author: Selva Valluvan <pvalluva@uwaterloo.ca>
+#
+########################################################################
+#
+# This module has one object and has its own methods.
+# Comments are provided at plces needed.
+#
+########################################################################
+
 package Twitter;
 
 use MIME::Base64;
