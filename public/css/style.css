@@ -1,0 +1,246 @@
+
+body {
+margin: 0;
+margin-bottom: 25px;
+padding: 0;
+background-color: #ffffff;
+background-image: url("/images/twitter.jpg");
+background-repeat: no-repeat;
+background-position: top 250px center;
+
+font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+font-size: 13px;
+color: #333;
+}
+
+h1 {
+font-size: 28px;
+color: #000;
+}
+
+a  {color: #03c}
+a:hover {
+background-color: #03c;
+color: white;
+text-decoration: none;
+}
+
+#page {
+background-color: #ddd;
+width: 750px;
+margin: auto;
+margin-left: auto;
+padding-left: 0px;
+margin-right: auto;
+}
+
+#content {
+background-color: white;
+border: 3px solid #aaa;
+border-top: none;
+padding: 25px;
+width: 500px;
+}
+
+#sidebar {
+float: right;
+width: 175px;
+}
+
+#header, #about, #getting-started {
+padding-left: 75px;
+padding-right: 30px;
+}
+
+
+#header {
+background-image: url("/images/logo.png");
+background-repeat: no-repeat;
+background-position: top left;
+height: 64px;
+}
+#header h1, #header h2 {margin: 0}
+#header h2 {
+color: #888;
+font-weight: normal;
+font-size: 16px;
+}
+
+#about h3 {
+margin: 0;
+margin-bottom: 10px;
+font-size: 14px;
+}
+
+
+#getting-started {
+border-top: 1px solid #ccc;
+margin-top: 25px;
+padding-top: 15px;
+}
+#getting-started h1 {
+margin: 0;
+font-size: 20px;
+}
+#getting-started h2 {
+margin: 0;
+font-size: 14px;
+font-weight: normal;
+color: #333;
+margin-bottom: 25px;
+}
+#getting-started ol {
+margin-left: 0;
+padding-left: 0;
+}
+#getting-started li {
+font-size: 18px;
+color: #888;
+margin-bottom: 25px;
+}
+#getting-started li h2 {
+margin: 0;
+font-weight: normal;
+font-size: 18px;
+color: #333;
+}
+#getting-started li p {
+color: #555;
+font-size: 13px;
+}
+
+#search {
+margin: 0;
+padding-top: 10px;
+padding-bottom: 10px;
+font-size: 11px;
+}
+#search input {
+font-size: 11px;
+margin: 2px;
+}
+#search-text {width: 170px}
+
+#sidebar ul {
+margin-left: 0;
+padding-left: 0;
+}
+#sidebar ul h3 {
+margin-top: 25px;
+font-size: 16px;
+padding-bottom: 10px;
+border-bottom: 1px solid #ccc;
+}
+#sidebar li {
+list-style-type: none;
+}
+#sidebar ul.links li {
+margin-bottom: 5px;
+}
+
+h1, h2, h3, h4, h5 {
+font-family: sans-serif;
+margin: 1.2em 0 0.6em 0;
+}
+
+p {
+line-height: 1.5em;
+margin: 1.6em 0;
+}
+
+code, tt {
+    font-family: 'Andale Mono', Monaco, 'Liberation Mono', 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', monospace;
+}
+
+#footer {
+clear: both;
+padding-top: 2em;
+text-align: center;
+padding-right: 160px;
+font-family: sans-serif;
+font-size: 10px;
+}
+
+h1 {color:#4099ff;}
+
+#tweetsTable {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      width: 30%;
+      border-collapse: collapse;
+      position: absolute;
+      top: 15%;
+      left: 15px;
+}
+
+#tweetsTable td, #tweetsTable th, #commonFollowingsTable td, #commonFollowingsTable th {
+      font-size: 1.1em;
+      border: 1px solid #98bf21;
+      padding: 3px 7px 2px 7px;
+}
+
+#tweetsTable th, #commonFollowingsTable th {
+      font-size: 1.1em;
+      text-align: center;
+      padding-top: 5px;
+      padding-bottom: 4px;
+      background-color: #003f7f;
+      color: #ffffff;
+}
+
+#tweetsTable tr:nth-child(even) {
+      background-color: #4099ff;
+}
+#commonFollowingsTable tr:nth-child(even) {
+      background-color: #4099ff;
+}
+
+#commonFollowingsTable {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      width: 65%;
+      border-collapse: collapse;
+      position: absolute;
+      top: 15%;
+      right: 15px;
+}
+
+#tweetsInput {
+      position: absolute;
+      top: 10%;
+      left: 150px;
+}
+
+#followingsInput{
+      position: absolute;
+      top: 10%;
+      right: 450px;
+}
+
+#errorsInput{
+      position: absolute;
+      top: 40px;
+      left: 40px;
+}
+
+span {
+      color:red;
+      font-size: 1.5em;
+      font-weight:bold;
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.button-secondary {
+      color: white;
+      border-radius: 4px;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-secondary {
+      background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+.textbox {
+      border: 3px outset #4099ff;
+      outline:0;
+      height:15px;
+      width: 200px;
+}

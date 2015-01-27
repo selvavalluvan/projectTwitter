@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+      <script src="/javascripts/twitter.js" type="text/javascript"></script>
+      <h1 align="center">Twitter Lover???.. Check this out..</h1>
+
+      <div id="tweetsInput" >
+            <input class="textbox" placeholder="Screen Name" type="text" id="screen_name"  />
+            <button class="button-secondary pure-button" onclick="getTweets()">Get Tweets</button>
+      </div>
+
+      <table  id="tweetsTable" >
+            <tr>
+                  <th>ID</th>
+                  <th >Tweet</th>
+                  <th>Time Created</th>
+            </tr>
+            <tr>
+                  <td ></td>
+                  <td></td>
+                  <td></td>
+            </tr>
+      </table>
+
+
+      <div id="followingsInput" >
+            <input class="textbox" placeholder="Screen Name Person1" type="text" id="tweety1"  />
+            <input class="textbox" placeholder="Screen Name Person2" type="text" id="tweety2"  />
+            <button class="button-secondary pure-button" onclick="getcommonFollowings()">Find Common Followings</button>
+      </div>
+
+      <table id="commonFollowingsTable">
+            <tr>
+                  <th>Profile Picture</th>
+                  <th>Display Name</th>
+                  <th>Screen Name</th>
+                  <th>Description</th>
+                  <th>TwitterID</th>
+            </tr>
+            <tr>
+                  <td ></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+            </tr>
+      </table>
+
+      <div id="errorsInput" >
+            <span id="errors"></span>
+      </div>
+
+</body>
+</html>
