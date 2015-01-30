@@ -1,4 +1,3 @@
-
 function getTweets() {
       var screenName = document.getElementById('screen_name').value
       var error =  document.getElementById("errors");
@@ -6,23 +5,25 @@ function getTweets() {
       while (myTable.rows.length > 2) {
             myTable.deleteRow(myTable.rows.length-1);
       }
-      error.innerHTML ="";
-
-      var http = new XMLHttpRequest();
-      http.open("GET","/tweets/"+screenName, true);
-      http.send();
-      http.onload = function() {
-		var response = http.response;
-		response = response.replace(/(\r\n|\n|\r)/gm,"");
-            response = JSON.parse(response);
-            if(http.status == 200) {
-				  console.log(response);
-                  drawTable(response);
-            } else {
-                  if (typeof response.errors === 'undefined') {
-                        error.innerHTML = response.error;
+      error.innerHTML = "";
+      if (screenName == "") {
+            error.innerHTML = "Please provide the Screen Name";
+      } else {
+            var http = new XMLHttpRequest();
+            http.open("GET","/tweets/"+screenName, true);
+            http.send();
+            http.onload = function() {
+                  var response = http.response;
+                  response = response.replace(/(\r\n|\n|\r)/gm,"");
+                  response = JSON.parse(response);
+                  if(http.status == 200) {
+                        drawTable(response);
                   } else {
-                        error.innerHTML = response.errors[0].message;
+                        if (typeof response.errors === 'undefined') {
+                              error.innerHTML = response.error;
+                        } else {
+                              error.innerHTML = response.errors[0].message;
+                        }
                   }
             }
       }
@@ -37,23 +38,27 @@ function getcommonFollowings() {
       while (myTable.rows.length > 2) {
             myTable.deleteRow(myTable.rows.length-1);
       }
-      error.innerHTML ="";
+      error.innerHTML = "";
+      if (tweety1 == "" || tweety2 == "") {
+            error.innerHTML = "Please provide the Screen Name";
+      } else {
 
-      var http = new XMLHttpRequest();
-      http.open("GET","/followings/"+tweety1+"/"+tweety2, true);
-      http.send();
-      http.onload = function() {
-		var response = http.response;
-		response = response.replace(/(\r\n|\n|\r)/gm,"");
-            response = JSON.parse(response);
-            if(http.status == 200) {
-                 drawFollowingTable(response.result);
-            } else {
-                 if (typeof response.errors === 'undefined') {
-                       error.innerHTML = response.error;
-                 } else {
-                       error.innerHTML = response.errors[0].message;
-                 }
+            var http = new XMLHttpRequest();
+            http.open("GET","/followings/"+tweety1+"/"+tweety2, true);
+            http.send();
+            http.onload = function() {
+                  var response = http.response;
+                  response = response.replace(/(\r\n|\n|\r)/gm,"");
+                  response = JSON.parse(response);
+                  if(http.status == 200) {
+                        drawFollowingTable(response.result);
+                  } else {
+                        if (typeof response.errors === 'undefined') {
+                              error.innerHTML = response.error;
+                        } else {
+                              error.innerHTML = response.errors[0].message;
+                        }
+                  }
             }
       }
 }
