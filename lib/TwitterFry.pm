@@ -1,18 +1,3 @@
-########################################################################
-#
-# File   :  TwitterFry.pm
-# History:  23-Jan-2015 first implementation of the TwitterFry package
-#               26-Jan-2015 final implementation of the TwitterFry
-#                       module, including testing.
-# Author: Selva Valluvan <pvalluva@uwaterloo.ca>
-#
-########################################################################
-#
-# This module has one object and has its own methods.
-# Comments are provided at plces needed.
-#
-########################################################################
-
 package TwitterFry;
 
 use LWP::UserAgent;
@@ -74,7 +59,7 @@ sub getTweets {
       my ( $self ) = @_;
       my $token = $self->{_token};
       my $screenName = @{$self->{_screenName}}[0];
-      my $count = (defined $self->{_count}) ? $self->{_count} : 20;                 # providing a default count if the calling function doesnot provide one.
+      my $count = (defined $self->{_count}) ? $self->{_count} : 20;
       my $ua = LWP::UserAgent->new;
 
       $self->validate();
@@ -114,42 +99,33 @@ sub getCommonFollowings {
       my ( $self ) = @_;
       my $token = $self->{_token};
       my $screenName = $self->{_screenName};
-      my $count = (defined $self->{_count}) ? $self->{_count} : 200;   # providing a default count if the calling function doesnot provide one.
+      my $count = (defined $self->{_count}) ? $self->{_count} : 250;
 
       $self->validate();
       if(not defined $self->{_error}){
-            my ($firstTweety, $error) = getFollowings($token, @{$screenName}[0], $count);
-            my ($secondTweety, $error) = getFollowings($token, @{$screenName}[1], $count);
+            my ($firstTweety, $error) = _getFollowings($token, @{$screenName}[0], $count);
+            my ($secondTweety, $error) = _getFollowings($token, @{$screenName}[1], $count);
 
             if(not defined $error){
-                  my $data1 = decode_json($firstTweety);
-                  my $data2 = decode_json($secondTweety);
-
-                  my $aref1 = $data1->{users};
-                  my @entryarray1;
-                  for my $element (@$aref1) {
-                        $entry = '{"id":"'. $element->{id_str}.'","name":"'. encode("utf8",$element->{name}).'","screen_name":"'. encode("utf8",$element->{screen_name}).'","description":"'. encode("utf8",$element->{description}).'","profile_image_url":"'. encode("utf8",$element->{profile_image_url}).'"}'."\n";
-                        push @entryarray1, $entry;
-                  }
-
-                  my $aref2 = $data2->{users};
-                  my @entryarray2;
-                  for my $element (@$aref2) {
-                        $entry = '{"id":"'. $element->{id_str}.'","name":"'. encode("utf8",$element->{name}).'","screen_name":"'. encode("utf8",$element->{screen_name}).'","description":"'. encode("utf8",$element->{description}).'","profile_image_url":"'. encode("utf8",$element->{profile_image_url}).'"}'."\n";
-                        push @entryarray2, $entry;
-                  }
-
+                  my @entryarray1 = _parseFollowings($firstTweety);
+                  my @entryarray2 = _parseFollowings($secondTweety);
                   my %count = ();
                   foreach my $element (@entryarray1, @entryarray2) {
                         $count{$element}++;
                   }
                   my @intersect  = grep { $count{$_} == 2 } keys %count;
                   my $preEncoded = join(', ', @intersect);
-                  $preEncoded = "{\"result\":[". $preEncoded."]}";
-                  $encodedResult = encode("utf8", $preEncoded);
-                  $self->{_result} = $encodedResult;
-                  $self->{_error} = undef;
-                  return $self->{_result};
+                  if ($preEncoded ne "") {
+                        $preEncoded = "{\"result\":[". $preEncoded."]}";
+                        $encodedResult = encode("utf8", $preEncoded);
+                        $self->{_result} = $encodedResult;
+                        $self->{_error} = undef;
+                        return $self->{_result};
+                  }else{
+                        my $error = '{"errors":[{"message":"No Common Followings between the users"}]}';
+                        $self->{_error} = $error;
+                        return $self->{_error};
+                  }
             }else{
                   $self->{_error} = $error;
                   return $self->{_error};
@@ -159,7 +135,7 @@ sub getCommonFollowings {
       }
 }
 
-sub getFollowings {
+sub _getFollowings {
       my $token = shift;
       my $screenName = shift;
       my $count = shift;
@@ -185,6 +161,19 @@ sub getFollowings {
             my $error = $resp->decoded_content;
             return (undef, $error);
       }
+}
+
+sub _parseFollowings {
+      my $followings = shift;
+      my $data1 = decode_json($followings);
+
+      my $aref1 = $data1->{users};
+      my @entryarray1;
+      for my $element (@$aref1) {
+            $entry = '{"id":"'. $element->{id_str}.'","name":"'. encode("utf8",$element->{name}).'","screen_name":"'. encode("utf8",$element->{screen_name}).'","description":"'. encode("utf8",$element->{description}).'","profile_image_url":"'. encode("utf8",$element->{profile_image_url}).'"}'."\n";
+            push @entryarray1, $entry;
+      }
+      return @entryarray1;
 }
 
 1;

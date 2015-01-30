@@ -51,12 +51,12 @@ get '/followings/:person1/:person2' => sub{
 
       my ($token, $error) = generateToken();
       if(not defined $error){
-            my $object = new TwitterFry($token,[$person1,$person2],150);                    # The default count is 200 as Twitter RFC. If count is not assigned here, there is a count predefined at my twitter package.
+            my $object = new TwitterFry($token,[$person1,$person2],250);                    # The default count is 200 as Twitter RFC. If count is not assigned here, there is a count predefined at my twitter package.
             $object->getCommonFollowings();
             $error = $object->getError();
             if(not defined $error){
                   my $result = $object->getResult();
-                  return "$result\n";
+				  return $result;
             }else{
                   status 422;
                   return "$error\n";

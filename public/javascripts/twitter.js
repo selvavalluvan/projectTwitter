@@ -2,13 +2,20 @@
 function getTweets() {
       var screenName = document.getElementById('screen_name').value
       var error =  document.getElementById("errors");
+      var myTable = document.getElementById("tweetsTable");
+      while (myTable.rows.length > 2) {
+            myTable.deleteRow(myTable.rows.length-1);
+      }
 
       var http = new XMLHttpRequest();
       http.open("GET","/tweets/"+screenName, true);
       http.send();
       http.onload = function() {
-            var response = JSON.parse(http.response);
+		var response = http.response;
+		response = response.replace(/(\r\n|\n|\r)/gm,"");
+            response = JSON.parse(response);
             if(http.status == 200) {
+				  console.log(response);
                   drawTable(response);
             } else {
                   if (typeof response.errors === 'undefined') {
@@ -25,20 +32,26 @@ function getcommonFollowings() {
       var tweety1 = document.getElementById('tweety1').value
       var tweety2 = document.getElementById('tweety2').value
       var error = document.getElementById('errors');
+      var myTable = document.getElementById("commonFollowingsTable");
+      while (myTable.rows.length > 2) {
+            myTable.deleteRow(myTable.rows.length-1);
+      }
 
       var http = new XMLHttpRequest();
       http.open("GET","/followings/"+tweety1+"/"+tweety2, true);
       http.send();
       http.onload = function() {
-            var response = JSON.parse(http.response);
+		var response = http.response;
+		response = response.replace(/(\r\n|\n|\r)/gm,"");
+            response = JSON.parse(response);
             if(http.status == 200) {
-                  drawFollowingTable(response.result);
+                 drawFollowingTable(response.result);
             } else {
-                  if (typeof response.errors === 'undefined') {
-                        error.innerHTML = response.error;
-                  } else {
-                        error.innerHTML = response.errors[0].message;
-                  }
+                 if (typeof response.errors === 'undefined') {
+                       error.innerHTML = response.error;
+                 } else {
+                       error.innerHTML = response.errors[0].message;
+                 }
             }
       }
 }
