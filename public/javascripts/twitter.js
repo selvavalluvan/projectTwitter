@@ -6,6 +6,7 @@ function getTweets() {
       while (myTable.rows.length > 2) {
             myTable.deleteRow(myTable.rows.length-1);
       }
+      error.innerHTML ="";
 
       var http = new XMLHttpRequest();
       http.open("GET","/tweets/"+screenName, true);
@@ -36,6 +37,7 @@ function getcommonFollowings() {
       while (myTable.rows.length > 2) {
             myTable.deleteRow(myTable.rows.length-1);
       }
+      error.innerHTML ="";
 
       var http = new XMLHttpRequest();
       http.open("GET","/followings/"+tweety1+"/"+tweety2, true);
